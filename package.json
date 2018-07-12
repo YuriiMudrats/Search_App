@@ -1,0 +1,19 @@
+{
+  "name": "q",
+  "version": "q",
+  "description": "q",
+  "main": "q",
+  "repository": "q",
+  "author": "q",
+  "license": "q",
+  "private": null,
+  "scripts": {
+    "start": "npm start"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "express": "^4.16.3",
+    "ngrok": "^3.0.1",
+    "nodemon": "^1.18.1"
+  }
+}
