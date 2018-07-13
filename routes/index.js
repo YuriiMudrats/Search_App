@@ -1,20 +1,41 @@
 const express = require("express");
 const axios = require("axios");
 
-
-const googleQueriesApi = "http://suggestqueries.google.com/complete/search?output=toolbar&hl=en&q="
+const googleApiXMl =
+  "http://suggestqueries.google.com/complete/search?output=toolbar&hl=en&q=";
+const googleApiJson = param =>
+  `http://suggestqueries.google.com/complete/search?q=${param}&client=firefox&hl=en`;
+const wikiSearch =
+  "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&iwurl=1&generator=search&gsrsearch=";
 
 const router = express.Router();
 
-const regfordata = '/data/g'
+const proxiResp = (req, res, next, options) => {
+  const body = req.body ? req.body[options.queries] : "react";
+  const googleJson = param =>
+    `http://suggestqueries.google.com/complete/search?q=${param}&client=firefox&hl=en`;
+  const url =
+    typeof options.urlPath === "function"
+      ? options.urlPath(body)
+      : options.urlPath + body;
+  axios({ url }).then(response => {
+    console.log(response.data);
+    res.send(response.data);
+  });
+};
 
-router.get("/queries", (req, res, next)=> {
-    const body = req.body ? req.body.queri : "react"
-    const url = googleQueriesApi + body
-    axios({ url }).then(queries => {
-        console.log(queries.data.toString().match(regfordata))
-        return res.send(queries.data)
-    } )
-})
+router.post("/queries", (req, res, next) => {
+  proxiResp(req, res, next, {
+    queries: "queries",
+    urlPath: googleApiJson
+  });
+});
 
-module.exports = router
+router.post("/wiki", (req, res, next) => {
+  proxiResp(req, res, next, {
+    queries: "wiki",
+    urlPath: wikiSearch
+  });
+});
+
+module.exports = router;

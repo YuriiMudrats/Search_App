@@ -1,0 +1,79 @@
+body {
+  background: #337ab7;
+}
+.container-fluid {
+  text-align: center;
+}
+.form-control {
+  width: 180px;
+  display: inline;
+}
+
+a#lucky {
+  color: white;
+  text-decoration: none;
+}
+a#lucky:hover {
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: underline;
+}
+
+section {
+  margin: 5px 200px;
+}
+.well {
+  padding-top: 5px;
+  text-align: left;
+}
+li {
+  list-style-type: none;
+}
+ul.google {
+  background-color: white;
+  position: absolute;
+  border-radius: 4px;
+  line-height: 1.3em;
+  padding: 0px;
+
+  width: 132px;
+  text-align: center;
+}
+div.refsDiv {
+  margin: 25px 50px;
+  font-family: verdana;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+a {
+  color: black;
+}
+a:hover {
+  color: black;
+  text-decoration: underline;
+}
+.text:hover {
+  text-decoration: underline;
+}
+.article {
+  background-color: white;
+  border-radius: 20px;
+  border: 1px solid;
+  margin: 40px;
+}
+.article__text {
+  color: #777777;
+  margin-left: 20px;
+}
+.article__title {
+  color: #337ab7;
+  font-size: 35px;
+  text-align: left;
+  padding-left: 30px;
+}
+.article__link__text {
+  color: #337ab7;
+  text-align: right;
+  padding-right: 20px;
+}
