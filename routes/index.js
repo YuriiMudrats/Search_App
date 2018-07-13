@@ -19,7 +19,6 @@ const proxiResp = (req, res, next, options) => {
       ? options.urlPath(body)
       : options.urlPath + body;
   axios({ url }).then(response => {
-    console.log(response.data);
     res.send(response.data);
   });
 };

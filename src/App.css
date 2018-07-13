@@ -2,6 +2,7 @@ body {
   background: #337ab7;
 }
 .container-fluid {
+  position: relative;
   text-align: center;
 }
 .form-control {
@@ -28,13 +29,17 @@ section {
 li {
   list-style-type: none;
 }
+li:hover {
+  background-color: #a39d9d;
+  border-bottom: 0.2px solid black;
+}
+
 ul.google {
   background-color: white;
   position: absolute;
   border-radius: 4px;
   line-height: 1.3em;
   padding: 0px;
-
   width: 132px;
   text-align: center;
 }

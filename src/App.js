@@ -18,7 +18,6 @@ class App extends Component {
     e.preventDefault();
     this.props.getOrder();
   };
-  onClick = data => {};
 
   render() {
     const { value, suggestins } = this.props;
