@@ -19,6 +19,12 @@ export function getGoogle(state = initialState, { type, payload }) {
         ...state,
         links: payload
       };
+     case types.CLICK_SUGGESTION: {
+       return {
+         ...state,
+         queries: payload
+       }
+     }
     default:
       return state;
   }

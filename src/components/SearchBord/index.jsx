@@ -2,8 +2,10 @@ import React from "react";
 import { Article } from "./Article";
 import { connect } from "react-redux";
 
-const articleMapper = ({ id, text = "netu", title }) => (
-  <Article key={id} name={title} text={text} link={id} />
+const articleMapper = ({ id, extract
+  , title }) => (
+  <Article key={id} name={title} text={extract
+  } link={id} />
 );
 
 const SearchBord = ({ articleBord }) => (

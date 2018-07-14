@@ -1,11 +1,12 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
-import { getOrder, clearSuggestions } from "../../store/actions";
+import { ChooseSuggestion} from "../../store/actions";
+
 
 class GoogleSuggestion extends PureComponent {
   showList = () =>
     this.props.googleLists.map((queri, i) => (
-      <li onClick={() => this.props.getOrder(queri)} key={queri + i}>
+      <li onClick={() => this.props.ChooseSuggestion(queri)} key={queri + i}>
         {queri}
       </li>
     ));
@@ -17,7 +18,7 @@ class GoogleSuggestion extends PureComponent {
 }
 
 const mapDispatchToProps = {
-  getOrder
+  ChooseSuggestion
 };
 
 export default connect(
