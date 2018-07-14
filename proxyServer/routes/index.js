@@ -6,18 +6,17 @@ const googleApiXMl =
 const googleApiJson = param =>
   `http://suggestqueries.google.com/complete/search?q=${param}&client=firefox&hl=en`;
 const wikiSearch =
-  "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=extracts&iwurl=1&generator=search&gsrsearch=";
+  "https://en.wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=0&gsrlimit=10&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch=";
+
 
 const router = express.Router();
 
 const proxiResp = (req, res, next, options) => {
-  const body = req.body ? req.body[options.queries] : "react";
-  const googleJson = param =>
-    `http://suggestqueries.google.com/complete/search?q=${param}&client=firefox&hl=en`;
+  const { queries, urlPath, isWiki } = options
+  const body = req.body ? req.body[queries] : "";
   const url =
-    typeof options.urlPath === "function"
-      ? options.urlPath(body)
-      : options.urlPath + body;
+    typeof urlPath === "function"
+      ? urlPath(body) : urlPath + body
   axios({ url }).then(response => {
     res.send(response.data);
   });
@@ -33,7 +32,7 @@ router.post("/queries", (req, res, next) => {
 router.post("/wiki", (req, res, next) => {
   proxiResp(req, res, next, {
     queries: "wiki",
-    urlPath: wikiSearch
+    urlPath: wikiSearch,
   });
 });
 

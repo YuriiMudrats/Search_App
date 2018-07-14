@@ -8,7 +8,7 @@
   "license": "q",
   "private": null,
   "scripts": {
-    "start": "node index.js"
+    "start": "nodemon --watch proxyServer proxyServer/index.js"
   },
   "dependencies": {
     "axios": "^0.18.0",
