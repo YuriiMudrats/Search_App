@@ -1,4 +1,4 @@
-import * as types from "../consts";
+import * as types from "../constants/actionTypes";
 
 const initialState = {
   queries: "",
@@ -12,7 +12,7 @@ export function getGoogle(state = initialState, { type, payload }) {
       return { ...state, suggestions: payload };
     case types.INPUT_CHANGE:
       return { ...state, queries: payload };
-    case types.CLEARE_SUGGESTIONS:
+    case types.CLEAR_SUGGESTIONS:
       return { ...state, suggestions: [] };
     case types.WIKI_TO_STORE:
       return {

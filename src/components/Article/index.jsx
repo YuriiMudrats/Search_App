@@ -1,5 +1,7 @@
 import React from "react";
 
+import './styles';
+
 export const Article = ({ name, text, link }) => (
   <div className="article">
     <h2 className="article__title">{name}</h2>

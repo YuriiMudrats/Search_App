@@ -54,7 +54,7 @@ const webpackConfig = {
     ]
   },
   resolve: {
-    extensions: ['.jsx', '.js', '.json'],
+    extensions: ['.jsx', '.js', '.json', '.css'],
     modules: [
       path.resolve(__dirname, 'node_modules'),
       'src',

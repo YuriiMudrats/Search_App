@@ -3,22 +3,23 @@ import { connect } from "react-redux";
 
 import Input from "../../components/Input";
 import GoogleSuggestion from "../GoogleSugestion";
-import { getOrder, getSuggestion, inputChange } from "../../actions";
+import { changeOrder, getSuggestion, inputChange } from "../../actions";
 import LinksBoard from "../LinksBoard";
 import SearchBoard from "../SearchBoard";
+import SearchForm from '../../components/SearchForm'
 
 
 
 
 class MainPage extends Component {
-  GetOrder = e => {
+  changeOrder = e => {
     const { value } = e.target;
     this.props.inputChange(value);
     this.props.getSuggestion(value);
   };
   onSubmit = e => {
     e.preventDefault();
-    this.props.getOrder();
+    this.props.changeOrder();
   };
   onClick=e=>{
     console.log(e.target)
@@ -26,32 +27,19 @@ class MainPage extends Component {
   }
 
   render() {
-    const { value, suggestions } = this.props;
+    const { query, suggestions } = this.props;
     return (
       <div className="container-fluid">
         <div className="form-inline">
-          <form onSubmit={this.onSubmit}>
-            <Input
-              className="form-control"
-              onChange={this.GetOrder}
-              value={value}
-            />
-            <button type="submit" className="btn btn-primary">
-              Search
-            </button>
-          </form>
+          <SearchForm onSubmit={this.onSubmit} changeOrder={this.changeOrder} query={query} />
           <GoogleSuggestion
             onClick={this.onClick}
-            value={value}
+            query={query}
             googleLists={suggestions}
           />
         </div>
-        <div>
-          <LinksBoard />
-        </div>
-        <div>
-          <SearchBoard />
-        </div>
+        <LinksBoard />
+        <SearchBoard />
       </div>
     );
   }
@@ -59,11 +47,11 @@ class MainPage extends Component {
 const mapDispatchToProps = {
   inputChange,
   getSuggestion,
-  getOrder
+  changeOrder
 };
 function mapStateToProps(state) {
   return {
-    value: state.queries,
+    query: state.queries,
     suggestions: state.suggestions
   };
 }

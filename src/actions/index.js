@@ -1,11 +1,11 @@
 import {
   GET_GOOGLE,
   INPUT_CHANGE,
-  SUGEST_TO_STORE,
-  CLEARE_SUGGESTIONS,
+  SUGGEST_TO_STORE,
+  CLEAR_SUGGESTIONS,
   WIKI_TO_STORE,
   CLICK_SUGGESTION
-} from '../consts';
+} from '../constants/actionTypes';
 
 export function getGoogle(payload) {
   return {
@@ -22,12 +22,12 @@ export function inputChange(payload) {
 }
 export function sugToStore(payload) {
   return {
-    type: SUGEST_TO_STORE,
+    type: SUGGEST_TO_STORE,
     payload
   };
 }
 export function clearSuggestions() {
-  return { type: CLEARE_SUGGESTIONS };
+  return { type: CLEAR_SUGGESTIONS };
 }
 export function wikiToStore(payload) {
   return {
@@ -42,7 +42,7 @@ export function chooseSuggestion(payload) {
   };
 }
 
-export function getOrder() {
+export function changeOrder() {
   return (dispatch, getState, axios) => {
     const wiki = getState().queries;
     axios.post('/wiki', { wiki }).then(res => {
