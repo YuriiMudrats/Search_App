@@ -1,40 +1,38 @@
-const express = require("express");
-const axios = require("axios");
+const express = require('express');
+const axios = require('axios');
+const querystring = require('querystring');
 
 const googleApiXMl =
-  "http://suggestqueries.google.com/complete/search?output=toolbar&hl=en&q=";
+  'http://suggestqueries.google.com/complete/search?output=toolbar&hl=en&q=';
 const googleApiJson = param =>
   `http://suggestqueries.google.com/complete/search?q=${param}&client=firefox&hl=en`;
 const wikiSearch =
-  "https://en.wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=0&gsrlimit=10&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch=";
-
+  'https://en.wikipedia.org/w/api.php?format=json&action=query&generator=search&gsrnamespace=0&gsrlimit=10&prop=pageimages|extracts&pilimit=max&exintro&explaintext&exsentences=1&exlimit=max&gsrsearch=';
 
 const router = express.Router();
 
 const proxyResp = (req, res, next, options) => {
-  const { queries, urlPath, isWiki } = options
-  const body = req.body ? req.body[queries] : "";
-  const url = typeof urlPath === "function"
-      ? urlPath(body) 
-      : urlPath + body;
+  const { queries, urlPath, isWiki } = options;
+  const body = req.body ? querystring.escape(req.body[queries]) : '';
 
-  axios({ url })
-  .then(({data}) => {
+  const url = typeof urlPath === 'function' ? urlPath(body) : urlPath + body;
+
+  axios({ url }).then(({ data }) => {
     res.send(data);
-  })
+  });
 };
 
-router.post("/queries", (req, res, next) => {
+router.post('/queries', (req, res, next) => {
   proxyResp(req, res, next, {
-    queries: "queries",
+    queries: 'queries',
     urlPath: googleApiJson
   });
 });
 
-router.post("/wiki", (req, res, next) => {
+router.post('/wiki', (req, res, next) => {
   proxyResp(req, res, next, {
-    queries: "wiki",
-    urlPath: wikiSearch,
+    queries: 'wiki',
+    urlPath: wikiSearch
   });
 });
 
