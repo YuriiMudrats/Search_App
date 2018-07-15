@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const LinksList = ({ link, id }) => (
   <div>
@@ -11,5 +12,10 @@ const LinksList = ({ link, id }) => (
     </a>
   </div>
 );
+
+LinksList.propTypes = {
+  link: PropTypes.string.isRequired,
+  id: PropTypes.number
+}
 
 export default LinksList;

@@ -1,11 +1,11 @@
 import React from "react";
-import { Article } from "../../components/Article";
 import { connect } from "react-redux";
+import Article from "../../components/Article";
 
 const articleMapper = ({ id, extract
   , title }) => (
   <Article key={id} name={title} text={extract
-  } link={id} />
+  } curId={id} />
 );
 
 const SearchBoard = ({ articleBoard }) => (
