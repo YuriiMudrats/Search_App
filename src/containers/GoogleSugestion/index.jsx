@@ -13,7 +13,7 @@ class GoogleSuggestion extends PureComponent {
 
   render() {
     const { query } = this.props;
-    return query ? <ul className="google">{this.showList()}</ul> : null;
+    return query ? <ul>{this.showList()}</ul> : null;
   }
 }
 

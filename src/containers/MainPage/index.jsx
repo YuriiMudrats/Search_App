@@ -8,6 +8,8 @@ import LinksBoard from "../LinksBoard";
 import SearchBoard from "../SearchBoard";
 import SearchForm from '../../components/SearchForm'
 
+import './styles'
+
 
 
 

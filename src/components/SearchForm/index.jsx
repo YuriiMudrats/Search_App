@@ -5,8 +5,8 @@ import Input from '../Input';
 
 const SearchForm = ({ query, onSubmit, changeOrder }) => (
   <form onSubmit={onSubmit}>
-    <Input className="form-control" onChange={changeOrder} value={query} />
-    <button type="submit" className="btn btn-primary">
+    <Input onChange={changeOrder} value={query} />
+    <button type="submit">
       Search
     </button>
   </form>
