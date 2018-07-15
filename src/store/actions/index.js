@@ -3,7 +3,8 @@ import {
   INPUT_CHANGE,
   SUGEST_TO_STORE,
   CLEARE_SUGGESTIONS,
-  WIKI_TO_STORE
+  WIKI_TO_STORE,
+  CLICK_SUGGESTION
 } from "../consts";
 
 export function getGoogle(payload) {
@@ -25,25 +26,30 @@ export function sugToStore(payload) {
     payload
   };
 }
-export function clearSuggestions() {
-  console.log("!!");
+export function clearSuggestions() {  
   return { type: CLEARE_SUGGESTIONS };
 }
-export function wikiToStore(payload) {
-  console.log(3, WIKI_TO_STORE, payload);
+export function wikiToStore(payload) { 
   return {
     type: WIKI_TO_STORE,
     payload
   };
 }
+export function ChooseSuggestion (payload){
+  return {
+    type:CLICK_SUGGESTION,
+    payload
+  }
+}
 
 export function getOrder() {
   return (dispatch, getState, axios) => {
-    const wiki = getState().queries;
-    axios.post("/wiki", { wiki }).then(res => {
+    const wiki = getState().queries;    
+    axios.post("/wiki", {wiki }).then(res => {
       const wikiPages = res.data.query.pages;
       const result = Object.keys(wikiPages).reduce((articlesArray, article) => {
         const reactArticle = {
+          extract: wikiPages[article].extract,
           id: wikiPages[article].pageid,
           title: wikiPages[article].title
         };
