@@ -1,17 +1,19 @@
 import {
-  GET_GOOGLE,
+  GET_GOOGLE_PENDING,
+  GET_GOOGLE_FULFILLED,
+  GET_GOOGLE_REJECTED,
   INPUT_CHANGE,
-  SUGGEST_TO_STORE,
   CLEAR_SUGGESTIONS,
   WIKI_PENDING,
   WIKI_FULFILLED,
   WIKI_NOTFOUND,
+  WIKI_REJECTED,
   CLICK_SUGGESTION
 } from '../constants/actionTypes';
 
 export function getGoogle(payload) {
   return {
-    type: GET_GOOGLE,
+    type: GET_GOOGLE_FULFILLED,
     payload
   };
 }
@@ -22,12 +24,7 @@ export function inputChange(payload) {
     payload
   };
 }
-export function sugToStore(payload) {
-  return {
-    type: SUGGEST_TO_STORE,
-    payload
-  };
-}
+
 export function clearSuggestions() {
   return { type: CLEAR_SUGGESTIONS };
 }
@@ -49,32 +46,43 @@ export function changeOrder() {
     const wiki = getState().searchInput.queries;
 
     dispatch({ type: WIKI_PENDING });
-
-    axios.post('/wiki', { wiki }).then(res => {
-      if (!res.data.query) {
-        return dispatch({ type: WIKI_NOTFOUND });
-      }
-
-      const wikiPages = res.data.query.pages;
-      const result = Object.keys(wikiPages).reduce((articlesArray, article) => {
-        const reactArticle = {
-          extract: wikiPages[article].extract,
-          id: wikiPages[article].pageid,
-          title: wikiPages[article].title
-        };
-        articlesArray.push(reactArticle);
-        return articlesArray;
-      }, []);
-      dispatch(wikiToStore(result));
-    });
     dispatch(clearSuggestions());
+
+    axios
+      .post('/wiki', { wiki })
+      .then(res => {
+        if (!res.data.query) {
+          return dispatch({ type: WIKI_NOTFOUND });
+        }
+
+        const wikiPages = res.data.query.pages;
+        const result = Object.keys(wikiPages).reduce(
+          (articlesArray, article) => {
+            const reactArticle = {
+              extract: wikiPages[article].extract,
+              id: wikiPages[article].pageid,
+              title: wikiPages[article].title
+            };
+            articlesArray.push(reactArticle);
+            return articlesArray;
+          },
+          []
+        );
+        dispatch(wikiToStore(result));
+      })
+      .catch(() => {
+        dispatch({ type: WIKI_REJECTED });
+      });
   };
 }
 export function getSuggestion(payload) {
   return (dispatch, getState, axios) => {
-    axios.post('/queries', { queries: payload })
-      .then(res => {
-        dispatch(getGoogle(res.data[1]));
-      })
+    dispatch({ type: GET_GOOGLE_PENDING })
+    axios.post('/queries', { queries: payload }).then(res => {
+      dispatch(getGoogle(res.data[1]));
+    })
+    .catch(() => {
+      dispatch({ type: GET_GOOGLE_REJECTED })
+    });
   };
 }
