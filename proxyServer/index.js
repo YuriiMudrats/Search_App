@@ -6,6 +6,7 @@ const webpackMiddleware = require("webpack-dev-middleware");
 const bodyParser = require("body-parser");
 const router = require("./routes");
 const webpackConfig = require("../webpack.config.dev");
+const errorHandler = require("./errorHandler");
 
 const app = express();
 const compiler = webpack(webpackConfig);
@@ -20,6 +21,7 @@ app.use(
 
 app.use(bodyParser.json());
 app.use(router);
+app.use(errorHandler);
 app.use(cors());
 
 app.get("/*", (req, res) => {
