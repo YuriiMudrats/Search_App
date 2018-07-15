@@ -1,20 +1,20 @@
 import React from 'react';
+import A from '../A'
 
 import PropTypes from 'prop-types';
 
-import './styles';
+import './styles.scss';
 
 export const Article = ({ name, text, curId }) => (
   <div className="article">
     <h2 className="article__title">{name}</h2>
     <p className="article__text">{text}</p>
-    <a
+    <A
       className="article__link"
-      target="_blank"
       href={`https://en.wikipedia.org/?curid=${curId}`}
     >
       <p className="article__link__text">{'more info...'}</p>
-    </a>
+    </A>
   </div>
 );
 

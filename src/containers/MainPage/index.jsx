@@ -8,7 +8,7 @@ import LinksBoard from "../LinksBoard";
 import SearchBoard from "../SearchBoard";
 import SearchForm from '../../components/SearchForm'
 
-import './styles'
+import './styles.scss'
 
 
 
@@ -36,7 +36,6 @@ class MainPage extends Component {
           <SearchForm onSubmit={this.onSubmit} changeOrder={this.changeOrder} query={query} />
           <GoogleSuggestion
             onClick={this.onClick}
-            query={query}
             googleLists={suggestions}
           />
         </div>

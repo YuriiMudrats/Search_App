@@ -77,12 +77,17 @@ export function changeOrder() {
 }
 export function getSuggestion(payload) {
   return (dispatch, getState, axios) => {
-    dispatch({ type: GET_GOOGLE_PENDING })
-    axios.post('/queries', { queries: payload }).then(res => {
-      dispatch(getGoogle(res.data[1]));
-    })
-    .catch(() => {
-      dispatch({ type: GET_GOOGLE_REJECTED })
-    });
+    dispatch({ type: GET_GOOGLE_PENDING });
+    axios
+      .post('/queries', { queries: payload })
+      .then(res => {
+        if (!res.data.length || res.data.length < 2) {
+          throw new Error('Invalid response');
+        }
+        dispatch(getGoogle(res.data[1]));
+      })
+      .catch(() => {
+        dispatch({ type: GET_GOOGLE_REJECTED });
+      });
   };
 }

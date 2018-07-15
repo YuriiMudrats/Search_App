@@ -1,17 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import './styles'
+import A from '../A'
+import './styles.scss'
 
 const LinksList = ({ link, id }) => (
   <div>
-    <a
-      target="_blank"
+    <A
       href={`https://en.wikipedia.org/?curid=${id}`}
-      rel="noopener noreferrer"
     >
       <p className="text">{link.toUpperCase()}</p>
-    </a>
+    </A>
   </div>
 );
 

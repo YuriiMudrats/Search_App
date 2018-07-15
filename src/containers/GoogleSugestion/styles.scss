@@ -1,0 +1,13 @@
+.search__list {
+  border: 1px solid #000;
+  box-shadow: 1px 1px 5px #000;
+}
+
+.search__list__item {
+  list-style-type: none;
+  cursor: pointer;
+  &:hover {
+    background-color: #a39d9d;
+    border-bottom: 0.2px solid black;
+  }
+}
