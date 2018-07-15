@@ -3,4 +3,4 @@ To start this app do simple three steps
 2) yarn start
 3) open your browser at "localhost:8000"
 
-with best regards DarkShark s team
+with best regards DarkShark developers team
