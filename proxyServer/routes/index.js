@@ -11,26 +11,29 @@ const wikiSearch =
 
 const router = express.Router();
 
-const proxiResp = (req, res, next, options) => {
+const proxyResp = (req, res, next, options) => {
   const { queries, urlPath, isWiki } = options
   const body = req.body ? req.body[queries] : "";
-  const url =
-    typeof urlPath === "function"
-      ? urlPath(body) : urlPath + body
-  axios({ url }).then(response => {
-    res.send(response.data);
-  });
+  const url = typeof urlPath === "function"
+      ? urlPath(body) 
+      : urlPath + body;
+
+  axios({ url })
+  .then(({data}) => {
+    res.send(data);
+  })
+  .catch(next);
 };
 
 router.post("/queries", (req, res, next) => {
-  proxiResp(req, res, next, {
+  proxyResp(req, res, next, {
     queries: "queries",
     urlPath: googleApiJson
   });
 });
 
 router.post("/wiki", (req, res, next) => {
-  proxiResp(req, res, next, {
+  proxyResp(req, res, next, {
     queries: "wiki",
     urlPath: wikiSearch,
   });
