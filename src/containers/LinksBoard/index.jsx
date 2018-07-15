@@ -27,8 +27,8 @@ LinksBoard.propTypes = {
   ).isRequired
 };
 
-function mapStateToProps({ links }) {
-  return { lists: links };
+function mapStateToProps({ wikiData }) {
+  return { lists: wikiData.links };
 }
 
 export default connect(mapStateToProps)(LinksBoard);

@@ -46,17 +46,20 @@ class MainPage extends Component {
     );
   }
 }
+
+function mapStateToProps({ searchInput, googleSuggestion}) {
+  return {
+    query: searchInput.queries,
+    suggestions: googleSuggestion.suggestions
+  };
+}
+
+
 const mapDispatchToProps = {
   inputChange,
   getSuggestion,
   changeOrder
 };
-function mapStateToProps(state) {
-  return {
-    query: state.queries,
-    suggestions: state.suggestions
-  };
-}
 
 export default connect(
   mapStateToProps,

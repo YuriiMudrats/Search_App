@@ -44,7 +44,7 @@ export function chooseSuggestion(payload) {
 
 export function changeOrder() {
   return (dispatch, getState, axios) => {
-    const wiki = getState().queries;
+    const wiki = getState().searchInput.queries;
     axios.post('/wiki', { wiki }).then(res => {
       const wikiPages = res.data.query.pages;
       const result = Object.keys(wikiPages).reduce((articlesArray, article) => {
@@ -63,8 +63,10 @@ export function changeOrder() {
 }
 export function getSuggestion(payload) {
   return (dispatch, getState, axios) => {
-    axios.post('/queries', { queries: payload }).then(res => {
-      dispatch(getGoogle(res.data[1]));
-    });
+    axios.post('/queries', { queries: payload })
+      .then(res => {
+        dispatch(getGoogle(res.data[1]));
+      })
+      .catch(() => console.log(res.message));
   };
 }

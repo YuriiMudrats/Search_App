@@ -22,7 +22,6 @@ const proxyResp = (req, res, next, options) => {
   .then(({data}) => {
     res.send(data);
   })
-  .catch(next);
 };
 
 router.post("/queries", (req, res, next) => {

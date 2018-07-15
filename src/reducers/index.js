@@ -1,31 +1,13 @@
-import * as types from "../constants/actionTypes";
+import { combineReducers } from 'redux';
 
-const initialState = {
-  queries: "",
-  suggestions: [],
-  links: []
-};
+import searchInput from './searchInputReducer';
+import googleSuggestion from './googleSuggestionReducer';
+import wikiData from './wikiReducer';
 
-export function getGoogle(state = initialState, { type, payload }) {
-  switch (type) {
-    case types.GET_GOOGLE:
-      return { ...state, suggestions: payload };
-    case types.INPUT_CHANGE:
-      return { ...state, queries: payload };
-    case types.CLEAR_SUGGESTIONS:
-      return { ...state, suggestions: [] };
-    case types.WIKI_TO_STORE:
-      return {
-        ...state,
-        links: payload
-      };
-     case types.CLICK_SUGGESTION: {
-       return {
-         ...state,
-         queries: payload
-       }
-     }
-    default:
-      return state;
-  }
-}
+const reducers = combineReducers({
+  searchInput,
+  googleSuggestion,
+  wikiData
+});
+
+export default reducers;
