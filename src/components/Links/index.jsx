@@ -1,6 +1,6 @@
 import React from "react";
 
-export const LinksList = ({ link, id }) => (
+const LinksList = ({ link, id }) => (
   <div>
     <a
       className="current__refs"
@@ -11,3 +11,5 @@ export const LinksList = ({ link, id }) => (
     </a>
   </div>
 );
+
+export default LinksList;

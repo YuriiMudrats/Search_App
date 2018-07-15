@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import Input from "../../components/Input";
-import GoogleSuggestion from "../../components/GoogleSugestion";
-import { getOrder, getSuggestion, inputChange } from "../../store/actions";
-import RefsBord from "../../components/RefsBord";
-import SearchBord from "../../components/SearchBord";
+import GoogleSuggestion from "../GoogleSugestion";
+import { getOrder, getSuggestion, inputChange } from "../../actions";
+import LinksBoard from "../LinksBoard";
+import SearchBoard from "../SearchBoard";
 
 
 
@@ -26,7 +26,7 @@ class MainPage extends Component {
   }
 
   render() {
-    const { value, suggestins } = this.props;
+    const { value, suggestions } = this.props;
     return (
       <div className="container-fluid">
         <div className="form-inline">
@@ -43,14 +43,14 @@ class MainPage extends Component {
           <GoogleSuggestion
             onClick={this.onClick}
             value={value}
-            googleLists={suggestins}
+            googleLists={suggestions}
           />
         </div>
         <div>
-          <RefsBord />
+          <LinksBoard />
         </div>
         <div>
-          <SearchBord />
+          <SearchBoard />
         </div>
       </div>
     );
@@ -64,7 +64,7 @@ const mapDispatchToProps = {
 function mapStateToProps(state) {
   return {
     value: state.queries,
-    suggestins: state.suggestins
+    suggestions: state.suggestions
   };
 }
 

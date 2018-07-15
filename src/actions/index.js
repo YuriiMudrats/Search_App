@@ -5,7 +5,7 @@ import {
   CLEARE_SUGGESTIONS,
   WIKI_TO_STORE,
   CLICK_SUGGESTION
-} from "../consts";
+} from '../consts';
 
 export function getGoogle(payload) {
   return {
@@ -26,26 +26,26 @@ export function sugToStore(payload) {
     payload
   };
 }
-export function clearSuggestions() {  
+export function clearSuggestions() {
   return { type: CLEARE_SUGGESTIONS };
 }
-export function wikiToStore(payload) { 
+export function wikiToStore(payload) {
   return {
     type: WIKI_TO_STORE,
     payload
   };
 }
-export function ChooseSuggestion (payload){
+export function chooseSuggestion(payload) {
   return {
-    type:CLICK_SUGGESTION,
+    type: CLICK_SUGGESTION,
     payload
-  }
+  };
 }
 
 export function getOrder() {
   return (dispatch, getState, axios) => {
-    const wiki = getState().queries;    
-    axios.post("/wiki", {wiki }).then(res => {
+    const wiki = getState().queries;
+    axios.post('/wiki', { wiki }).then(res => {
       const wikiPages = res.data.query.pages;
       const result = Object.keys(wikiPages).reduce((articlesArray, article) => {
         const reactArticle = {
@@ -63,8 +63,8 @@ export function getOrder() {
 }
 export function getSuggestion(payload) {
   return (dispatch, getState, axios) => {
-    axios
-      .post("/queries", { queries: payload })
-      .then(res => dispatch(getGoogle(res.data[1])));
+    axios.post('/queries', { queries: payload }).then(res => {
+      dispatch(getGoogle(res.data[1]));
+    });
   };
 }
