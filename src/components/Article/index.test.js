@@ -17,5 +17,9 @@ describe('<Article />', () => {
   const renderedComponent = shallow(<Article curId={14892} name="Intelligence quotient" text={"An intelligence quotient"} />);
     expect(renderedComponent.find('h2').length).toEqual(1);
   });
+  it('should have two p', () => {
+  const renderedComponent = shallow(<Article curId={14892} name="Intelligence quotient" text={"An intelligence quotient"} />);
+    expect(renderedComponent.find('p').length).toEqual(2);
+  });
 
 });

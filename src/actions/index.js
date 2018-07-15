@@ -34,12 +34,7 @@ export function wikiToStore(payload) {
     payload
   };
 }
-export function chooseSuggestion(payload) {
-  return {
-    type: CLICK_SUGGESTION,
-    payload
-  };
-}
+
 
 export function changeOrder() {
   return (dispatch, getState, axios) => {
@@ -77,6 +72,7 @@ export function changeOrder() {
 }
 export function getSuggestion(payload) {
   return (dispatch, getState, axios) => {
+    dispatch(inputChange(payload));
     dispatch({ type: GET_GOOGLE_PENDING });
     axios
       .post('/queries', { queries: payload })
@@ -91,3 +87,11 @@ export function getSuggestion(payload) {
       });
   };
 }
+
+export const chooseSuggestion = payload => dispatch => {
+  dispatch({
+    type: CLICK_SUGGESTION,
+    payload
+  });
+  return dispatch(changeOrder());
+};

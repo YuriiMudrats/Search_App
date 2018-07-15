@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const A = ({ children, href, className }) => (
   <a
@@ -10,5 +11,11 @@ const A = ({ children, href, className }) => (
     {children}
   </a>
 );
+
+A.propTypes = {
+  children: PropTypes.element.isRequired,
+  href: PropTypes.string.isRequired,
+  className: PropTypes.string
+}
 
 export default A;

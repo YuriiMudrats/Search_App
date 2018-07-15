@@ -16,17 +16,13 @@ import './styles.scss'
 class MainPage extends Component {
   changeOrder = e => {
     const { value } = e.target;
-    this.props.inputChange(value);
+
     this.props.getSuggestion(value);
   };
   onSubmit = e => {
     e.preventDefault();
     this.props.changeOrder();
   };
-  onClick=e=>{
-    console.log(e.target)
-
-  }
 
   render() {
     const { query, suggestions } = this.props;
@@ -35,7 +31,6 @@ class MainPage extends Component {
         <div className="form-inline">
           <SearchForm onSubmit={this.onSubmit} changeOrder={this.changeOrder} query={query} />
           <GoogleSuggestion
-            onClick={this.onClick}
             googleLists={suggestions}
           />
         </div>
