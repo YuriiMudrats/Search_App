@@ -3,7 +3,9 @@ import {
   INPUT_CHANGE,
   SUGGEST_TO_STORE,
   CLEAR_SUGGESTIONS,
-  WIKI_TO_STORE,
+  WIKI_PENDING,
+  WIKI_FULFILLED,
+  WIKI_NOTFOUND,
   CLICK_SUGGESTION
 } from '../constants/actionTypes';
 
@@ -31,7 +33,7 @@ export function clearSuggestions() {
 }
 export function wikiToStore(payload) {
   return {
-    type: WIKI_TO_STORE,
+    type: WIKI_FULFILLED,
     payload
   };
 }
@@ -45,7 +47,14 @@ export function chooseSuggestion(payload) {
 export function changeOrder() {
   return (dispatch, getState, axios) => {
     const wiki = getState().searchInput.queries;
+
+    dispatch({ type: WIKI_PENDING });
+
     axios.post('/wiki', { wiki }).then(res => {
+      if (!res.data.query) {
+        return dispatch({ type: WIKI_NOTFOUND });
+      }
+
       const wikiPages = res.data.query.pages;
       const result = Object.keys(wikiPages).reduce((articlesArray, article) => {
         const reactArticle = {
@@ -67,6 +76,5 @@ export function getSuggestion(payload) {
       .then(res => {
         dispatch(getGoogle(res.data[1]));
       })
-      .catch(() => console.log(res.message));
   };
 }

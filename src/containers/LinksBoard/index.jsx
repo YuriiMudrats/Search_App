@@ -7,28 +7,40 @@ class LinksBoard extends React.PureComponent {
   linkListItem = ({ id, title }) => <LinksList key={id} id={id} link={title} />;
 
   render() {
-    const { lists } = this.props;
+    const { pending, lists, notFound } = this.props;
 
-    return (
-      <div className="refsDiv">
-        {lists ? lists.map(this.linkListItem) : null}
-      </div>
-    );
+    if (pending) {
+      return <div>Loading...</div>;
+    }
+
+    if (notFound) {
+      return <div>Not found</div>;
+    }
+
+    return lists ? (
+      <div className="refsDiv">{lists.map(this.linkListItem)}</div>
+    ) : null;
   }
 }
 
 LinksBoard.propTypes = {
+  pending: PropTypes.bool.isRequired,
   lists: PropTypes.arrayOf(
     PropTypes.shape({
       extract: PropTypes.string,
       id: PropTypes.number,
       title: PropTypes.string
     })
-  ).isRequired
+  ).isRequired,
+  notFound: PropTypes.bool.isRequired
 };
 
 function mapStateToProps({ wikiData }) {
-  return { lists: wikiData.links };
+  return {
+    pending: wikiData.pending,
+    lists: wikiData.links,
+    notFound: wikiData.notFound
+  };
 }
 
 export default connect(mapStateToProps)(LinksBoard);
