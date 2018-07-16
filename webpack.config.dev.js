@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 
 const webpackConfig = {
   devtool: 'source-map',
@@ -15,7 +16,8 @@ const webpackConfig = {
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new ExtractTextPlugin('./css/[name].css')
+    new ExtractTextPlugin('./css/[name].css'),
+    new OpenBrowserPlugin({ url: 'http://localhost:8000' })
   ],
   module: {
     rules: [
@@ -63,6 +65,9 @@ const webpackConfig = {
       'src/containers',
       'src/store/entities'
     ]
+  },
+  devServer: {
+    open: true
   }
 };
 

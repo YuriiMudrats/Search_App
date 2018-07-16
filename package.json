@@ -32,6 +32,7 @@
     "ngrok": "^3.0.1",
     "node-sass": "^4.9.2",
     "nodemon": "^1.18.1",
+    "open-browser-webpack-plugin": "^0.0.5",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-hot-loader": "^4.3.3",
