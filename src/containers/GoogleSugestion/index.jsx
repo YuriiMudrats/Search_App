@@ -5,7 +5,7 @@ import { chooseSuggestion } from '../../actions';
 
 import './styles.scss';
 
-class GoogleSuggestion extends PureComponent {
+export class GoogleSuggestion extends PureComponent {
   showList = () =>
     this.props.googleLists.map((query, i) => (
       <li className="search__list__item" onClick={() => this.props.chooseSuggestion(query)} key={query + i}>

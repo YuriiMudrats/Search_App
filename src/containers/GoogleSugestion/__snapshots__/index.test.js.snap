@@ -1,0 +1,155 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<GoogleSuggestion /> <li> should have className attribute 1`] = `
+<ul
+  className="search__list"
+>
+  <li
+    className="search__list__item"
+    key="world cup0"
+    onClick={[Function]}
+  >
+    world cup
+  </li>
+  <li
+    className="search__list__item"
+    key="world map1"
+    onClick={[Function]}
+  >
+    world map
+  </li>
+  <li
+    className="search__list__item"
+    key="world of tanks2"
+    onClick={[Function]}
+  >
+    world of tanks
+  </li>
+  <li
+    className="search__list__item"
+    key="worldtimebuddy3"
+    onClick={[Function]}
+  >
+    worldtimebuddy
+  </li>
+  <li
+    className="search__list__item"
+    key="world cup groups4"
+    onClick={[Function]}
+  >
+    world cup groups
+  </li>
+  <li
+    className="search__list__item"
+    key="world of warcraft5"
+    onClick={[Function]}
+  >
+    world of warcraft
+  </li>
+  <li
+    className="search__list__item"
+    key="world cup standings6"
+    onClick={[Function]}
+  >
+    world cup standings
+  </li>
+  <li
+    className="search__list__item"
+    key="world news7"
+    onClick={[Function]}
+  >
+    world news
+  </li>
+  <li
+    className="search__list__item"
+    key="world cup results8"
+    onClick={[Function]}
+  >
+    world cup results
+  </li>
+  <li
+    className="search__list__item"
+    key="world cup matches9"
+    onClick={[Function]}
+  >
+    world cup matches
+  </li>
+</ul>
+`;
+
+exports[`<GoogleSuggestion /> should be equal to snapshot 1`] = `
+<ul
+  className="search__list"
+>
+  <li
+    className="search__list__item"
+    key="world cup0"
+    onClick={[Function]}
+  >
+    world cup
+  </li>
+  <li
+    className="search__list__item"
+    key="world map1"
+    onClick={[Function]}
+  >
+    world map
+  </li>
+  <li
+    className="search__list__item"
+    key="world of tanks2"
+    onClick={[Function]}
+  >
+    world of tanks
+  </li>
+  <li
+    className="search__list__item"
+    key="worldtimebuddy3"
+    onClick={[Function]}
+  >
+    worldtimebuddy
+  </li>
+  <li
+    className="search__list__item"
+    key="world cup groups4"
+    onClick={[Function]}
+  >
+    world cup groups
+  </li>
+  <li
+    className="search__list__item"
+    key="world of warcraft5"
+    onClick={[Function]}
+  >
+    world of warcraft
+  </li>
+  <li
+    className="search__list__item"
+    key="world cup standings6"
+    onClick={[Function]}
+  >
+    world cup standings
+  </li>
+  <li
+    className="search__list__item"
+    key="world news7"
+    onClick={[Function]}
+  >
+    world news
+  </li>
+  <li
+    className="search__list__item"
+    key="world cup results8"
+    onClick={[Function]}
+  >
+    world cup results
+  </li>
+  <li
+    className="search__list__item"
+    key="world cup matches9"
+    onClick={[Function]}
+  >
+    world cup matches
+  </li>
+</ul>
+`;

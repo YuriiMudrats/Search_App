@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LinksBoard /> render component should have className attribute 1`] = `
+<div
+  className="refsDiv"
+>
+  <LinksList
+    id={1695}
+    key="1695"
+    link="Amazons"
+  />
+  <LinksList
+    id={1701}
+    key="1701"
+    link="Amazon River"
+  />
+  <LinksList
+    id={48139}
+    key="48139"
+    link="Amazon rainforest"
+  />
+  <LinksList
+    id={90451}
+    key="90451"
+    link="Amazon (company)"
+  />
+  <LinksList
+    id={6891537}
+    key="6891537"
+    link="Amazon Video"
+  />
+  <LinksList
+    id={14312829}
+    key="14312829"
+    link="Amazon Kindle"
+  />
+  <LinksList
+    id={29621629}
+    key="29621629"
+    link="Amazon"
+  />
+  <LinksList
+    id={41933064}
+    key="41933064"
+    link="List of original programs distributed by Amazon"
+  />
+  <LinksList
+    id={51442811}
+    key="51442811"
+    link="Amazon Obhijaan"
+  />
+  <LinksList
+    id={52791355}
+    key="52791355"
+    link="Amazon Prime"
+  />
+</div>
+`;
