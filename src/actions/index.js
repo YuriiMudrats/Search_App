@@ -28,7 +28,8 @@ export function inputChange(payload) {
 export function clearSuggestions() {
   return { type: CLEAR_SUGGESTIONS };
 }
-export function wikiToStore(payload) {
+
+export function wikiReceived(payload) {
   return {
     type: WIKI_FULFILLED,
     payload
@@ -63,7 +64,7 @@ export function changeOrder() {
           },
           []
         );
-        dispatch(wikiToStore(result));
+        dispatch(wikiReceived(result));
       })
       .catch(() => {
         dispatch({ type: WIKI_REJECTED });

@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import LinksList from '../../components/Links';
 import PropTypes from 'prop-types';
 
+import './styles.scss'
+
 export class LinksBoard extends React.PureComponent {
   linkListItem = ({ id, title }) => <LinksList key={id} id={id} link={title} />;
 
